@@ -1,5 +1,16 @@
 <template>
   <div id="container">
+    <header>
+      <h1>vinicius_olro</h1>
+      <nav>
+        <ul>
+          <li class="selected"><a href="#">_hello</a></li>
+          <li><a href="#">_about-me</a></li>
+          <li><a href="#">_projects</a></li>
+          <li><a href=" #">_contact-me</a></li>
+        </ul>
+      </nav>
+    </header>
     <nuxt-page />
   </div>
 </template>
@@ -10,7 +21,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
 
 :root {
@@ -25,12 +36,14 @@ export default {
   font-size: 62.5%;
 }
 
-*, body {
+*,
+body {
   margin: 0;
   padding: 0;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -44,12 +57,78 @@ body {
   justify-content: center;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+
 #container {
   border: .1rem solid var(--secondary-color);
   border-radius: .8rem;
   height: calc(100vh - 14.42vh - .2rem);
   width: calc(100vw - 7.18vw - .2rem);
   background-color: var(--primary-color);
+
+  header {
+    color: var(--comment-color);
+    padding: 0 2.2rem;
+    display: flex;
+    border-bottom: .1rem solid var(--secondary-color);
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: normal;
+      margin: auto;
+      margin-right: 15.4rem;
+    }
+
+    nav {
+      width: 100%;
+      height: 5.6rem;
+
+      ul {
+        display: flex;
+        width: 100%;
+        height: 100%;
+
+        li {
+          padding: 0 3.2rem;
+          border-left: .1rem solid var(--secondary-color);
+          display: flex;
+          align-items: center;
+          position: relative;
+
+          &:last-child {
+            margin-left: auto;
+          }
+          &.selected {
+            &::after {
+              content: "";
+              position: absolute;
+              left: 0;
+              bottom: -.2rem;
+              height: .3rem;
+              width: 100%;
+              background-color: var(--warning-color);
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 768px) {
@@ -62,7 +141,12 @@ body {
   #container {
     height: calc(100vh - 3.2rem);
     width: calc(100vw - 3.2rem);
+
+    header {
+      nav {
+        display: none;
+      }
+    }
   }
 }
-
 </style>
