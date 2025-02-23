@@ -4,10 +4,13 @@
       <h1>vinicius_olro</h1>
       <nav>
         <ul>
-          <li class="selected"><a href="#">_hello</a></li>
-          <li><a href="#">_about-me</a></li>
-          <li><a href="#">_projects</a></li>
-          <li><a href=" #">_contact-me</a></li>
+          <li 
+            v-for="page in pages"
+            :key="page.id"
+            @click="onPageClick(page.path)"
+          >
+            <a>_{{ page.name }}</a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -17,7 +20,41 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    pages() {
+      return [
+        {
+          name: 'hello',
+          path: '/',
+          id: 0
+        },
+        {
+          name: 'about-me',
+          path: '/about-me',
+          id: 1
+        },
+        {
+          name: 'projects',
+          path: '/projects',
+          id: 2
+        },
+        {
+          name: 'contact-me',
+          path: '/contact-me',
+          id: 3
+        }
+      ];
+    },
+    currentPage() {
+      return this.$route;
+    }
+  },
+  methods: {
+    onPageClick(pagePath) {
+      this.$router.push(pagePath);
+    }
+  }
 }
 </script>
 
@@ -72,6 +109,7 @@ a {
   text-decoration: none;
   color: inherit;
   display: block;
+  cursor: pointer;
 }
 
 
