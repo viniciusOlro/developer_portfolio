@@ -7,6 +7,7 @@
           <li 
             v-for="page in pages"
             :key="page.id"
+            :class="{ 'selected': page.path === currentPage.path }"
             @click="onPageClick(page.path)"
           >
             <a>_{{ page.name }}</a>
