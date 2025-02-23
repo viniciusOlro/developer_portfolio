@@ -4,18 +4,16 @@
       <h1>vinicius_olro</h1>
       <nav>
         <ul>
-          <li 
-            v-for="page in pages"
-            :key="page.id"
-            :class="{ 'selected': page.path === currentPage.path }"
-            @click="onPageClick(page.path)"
-          >
+          <li v-for="page in pages" :key="page.id" :class="{ 'selected': page.path === currentPage.path }"
+            @click="onPageClick(page.path)">
             <a>_{{ page.name }}</a>
           </li>
         </ul>
       </nav>
     </header>
-    <nuxt-page />
+    <transition name="fade" mode="out-in">
+      <nuxt-page />
+    </transition>
   </div>
 </template>
 
@@ -153,21 +151,38 @@ a {
           &:last-child {
             margin-left: auto;
           }
+
+          &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.2rem;
+            height: 0.3rem;
+            width: 0%;
+            /* Estado inicial */
+            background-color: var(--warning-color);
+            transition: width 0.3s ease-in-out;
+          }
+
           &.selected {
             &::after {
-              content: "";
-              position: absolute;
-              left: 0;
-              bottom: -.2rem;
-              height: .3rem;
               width: 100%;
-              background-color: var(--warning-color);
             }
           }
         }
       }
     }
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
 @media (max-width: 768px) {
