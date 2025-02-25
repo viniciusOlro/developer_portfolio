@@ -1,57 +1,34 @@
 <template>
   <div id="container">
-    <header>
-      <h1>vinicius_olro</h1>
-      <nav>
-        <ul>
-          <li v-for="page in pages" :key="page.id" :class="{ 'selected': page.path === currentPage.path }"
-            @click="onPageClick(page.path)">
-            <a>_{{ page.name }}</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <Header @is-mobile-menu-open-change="onIsMobileMenuOpenChange" />
     <transition name="fade" mode="out-in">
-      <nuxt-page />
+      <div v-if="!isMobileMenuOpen">
+        <transition name="fade" mode="out-in">
+          <nuxt-page />
+        </transition>
+      </div>
+      <div v-else>
+        <Header @is-mobile-menu-open-change="onIsMobileMenuOpenChange" />
+      </div>
     </transition>
   </div>
 </template>
 
 <script>
+import Header from './components/Header.vue';
 export default {
   name: 'App',
-  computed: {
-    pages() {
-      return [
-        {
-          name: 'hello',
-          path: '/',
-          id: 0
-        },
-        {
-          name: 'about-me',
-          path: '/about-me',
-          id: 1
-        },
-        {
-          name: 'projects',
-          path: '/projects',
-          id: 2
-        },
-        {
-          name: 'contact-me',
-          path: '/contact-me',
-          id: 3
-        }
-      ];
-    },
-    currentPage() {
-      return this.$route;
+  components: {
+    Header
+  },
+  data() {
+    return {
+      isMobileMenuOpen: false
     }
   },
   methods: {
-    onPageClick(pagePath) {
-      this.$router.push(pagePath);
+    onIsMobileMenuOpenChange(isMobileMenuOpen) {
+      this.isMobileMenuOpen = isMobileMenuOpen;
     }
   }
 }
@@ -118,61 +95,6 @@ a {
   height: calc(100vh - 14.42vh - .2rem);
   width: calc(100vw - 7.18vw - .2rem);
   background-color: var(--primary-color);
-
-  header {
-    color: var(--comment-color);
-    padding: 0 2.2rem;
-    display: flex;
-    border-bottom: .1rem solid var(--secondary-color);
-
-    h1 {
-      font-size: 1.6rem;
-      font-weight: normal;
-      margin: auto;
-      margin-right: 15.4rem;
-    }
-
-    nav {
-      width: 100%;
-      height: 5.6rem;
-
-      ul {
-        display: flex;
-        width: 100%;
-        height: 100%;
-
-        li {
-          padding: 0 3.2rem;
-          border-left: .1rem solid var(--secondary-color);
-          display: flex;
-          align-items: center;
-          position: relative;
-
-          &:last-child {
-            margin-left: auto;
-          }
-
-          &::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -0.2rem;
-            height: 0.3rem;
-            width: 0%;
-            /* Estado inicial */
-            background-color: var(--warning-color);
-            transition: width 0.3s ease-in-out;
-          }
-
-          &.selected {
-            &::after {
-              width: 100%;
-            }
-          }
-        }
-      }
-    }
-  }
 }
 
 .fade-enter-active,
@@ -185,7 +107,7 @@ a {
   opacity: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 915px) {
   body {
     padding: 1.6rem;
     display: block;
@@ -195,12 +117,6 @@ a {
   #container {
     height: calc(100vh - 3.2rem);
     width: calc(100vw - 3.2rem);
-
-    header {
-      nav {
-        display: none;
-      }
-    }
   }
 }
 </style>
