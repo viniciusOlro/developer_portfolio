@@ -37,6 +37,7 @@ export default {
 <style scoped>
 main {
   height: 100%;
+  padding: 0 2.4rem;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -105,7 +106,6 @@ main {
 @media (max-width: 915px) {
   main {
     flex-direction: column;
-    padding: 0 2.4rem;
   }
 }
 </style>
