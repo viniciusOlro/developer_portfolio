@@ -18,14 +18,19 @@
       </div>
     </section>
     <section>
-      seção 2
+      <CodeMirror />
     </section>
   </main>
 </template>
 
 <script>
+import CodeMirror from '~/components/CodeMirror.vue';
+
 export default {
-  name: 'Index'
+  name: 'Index',
+  components: {
+    CodeMirror
+  }
 }
 </script>
 

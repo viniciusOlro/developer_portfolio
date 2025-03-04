@@ -38,6 +38,7 @@ export default {
   --info-color: #615FFF;
   --success-color: #00D5BE;
   --warning-color: #FFA1AD;
+  --code-snippet-bg-color: #020618;
   font-size: 62.5%;
 }
 
