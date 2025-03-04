@@ -6,17 +6,20 @@
         <nuxt-page />
       </transition>
     </div>
+    <Footer id="app-footer" />
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
 import navbarMixin from './mixins/navbar.mixin';
 export default {
   name: 'App',
   mixins: [navbarMixin],
   components: {
-    Header
+    Header,
+    Footer
   }
 }
 </script>
@@ -75,13 +78,19 @@ a {
   cursor: pointer;
 }
 
-
 #container {
   border: .1rem solid var(--secondary-color);
   border-radius: .8rem;
   height: calc(100vh - 14.42vh - .2rem);
   width: calc(100vw - 7.18vw - .2rem);
   background-color: var(--primary-color);
+  position: relative;
+
+  #app-footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
 }
 
 .fade-enter-active,
