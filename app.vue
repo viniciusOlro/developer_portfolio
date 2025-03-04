@@ -1,35 +1,22 @@
 <template>
   <div id="container">
-    <Header @is-mobile-menu-open-change="onIsMobileMenuOpenChange" />
-    <transition name="fade" mode="out-in">
-      <div v-if="!isMobileMenuOpen">
-        <transition name="fade" mode="out-in">
-          <nuxt-page />
-        </transition>
-      </div>
-      <div v-else>
-        <Header @is-mobile-menu-open-change="onIsMobileMenuOpenChange" />
-      </div>
-    </transition>
+    <Header />
+    <div v-if="!isMobileMenuOpen">
+      <transition name="fade" mode="out-in">
+        <nuxt-page />
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue';
+import navbarMixin from './mixins/navbar.mixin';
 export default {
   name: 'App',
+  mixins: [navbarMixin],
   components: {
     Header
-  },
-  data() {
-    return {
-      isMobileMenuOpen: false
-    }
-  },
-  methods: {
-    onIsMobileMenuOpenChange(isMobileMenuOpen) {
-      this.isMobileMenuOpen = isMobileMenuOpen;
-    }
   }
 }
 </script>

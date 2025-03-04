@@ -1,12 +1,12 @@
 <template>
   <header>
     <h1>vinicius_olro</h1>
-    <div :class="[{ 'hamburger-open': isMobileMenuOpen }, 'hamburger']" @click="isMobileMenuOpen = !isMobileMenuOpen">
+    <div :class="[{ 'hamburger-open': isMobileMenuOpen }, 'hamburger']" @click="handleHamburgerMenu">
       <span></span>
       <span></span>
       <span></span>
     </div>
-    <nav :class="{ 'menu-open': isMobileMenuOpen }">
+    <nav :class="{ 'mobile-menu-open': isMobileMenuOpen }">
       <ul>
         <li v-for="page in pages" :key="page.id" :class="{ 'selected': page.path === currentPage.path }"
           @click="onPageClick(page.path)">
@@ -18,13 +18,10 @@
 </template>
 
 <script>
+import navbarMixin from '~/mixins/navbar.mixin';
 export default {
   name: 'Navbar',
-  data() {
-    return {
-      isMobileMenuOpen: false
-    }
-  },
+  mixins: [navbarMixin],
   computed: {
     pages() {
       return [
@@ -48,27 +45,21 @@ export default {
           path: '/contact-me',
           id: 3
         }
-      ];
+      ]
     },
     currentPage() {
-      return this.$route;
+      return this.$route
     }
   },
   methods: {
     onPageClick(pagePath) {
       if (this.isMobileMenuOpen) {
-        this.isMobileMenuOpen = false;
+        this.isMobileMenuOpen = false
       }
-      this.$router.push(pagePath);
-    }
-  },
-  watch: {
-    isMobileMenuOpen: {
-      handler() {
-        this.$emit('is-mobile-menu-open-change', this.isMobileMenuOpen);
-      },
-      deep: true,
-      immediate: true
+      this.$router.push(pagePath)
+    },
+    handleHamburgerMenu() {
+      this.navbarStore.updateIsMobileMenuOpen()
     }
   }
 }
@@ -197,26 +188,32 @@ header {
     }
 
     nav {
-      display: none;
+      position: absolute;
+      top: 7.2rem;
+      left: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 
-      &.menu-open {
-        position: absolute;
-        left: 1.6rem;
-        top: 7.2rem;
-        display: block;
+      &.mobile-menu-open {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
 
         ul {
           display: flex;
           flex-direction: column;
           height: calc(100vh - 8.8rem);
+          width: calc(100vw - 3.2rem);
+          margin: auto;
 
           li {
             margin: 0;
-            padding: 0 2.2rem;
-            border-left: none;
-            border-bottom: .1rem solid var(--secondary-color);
+            padding: 0;
+            padding-left: 2.2rem;
             height: 5.6rem;
-            width: calc(100vw - 3.2rem);
+            border-bottom: .1rem solid var(--secondary-color);
 
             &::after {
               content: none;
@@ -225,6 +222,7 @@ header {
         }
       }
     }
+
   }
 }
 </style>
