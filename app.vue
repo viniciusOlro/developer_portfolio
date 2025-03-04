@@ -32,10 +32,12 @@ export default {
   --primary-color: #011627;
   --secondary-color: #1E2D3D;
   --text-color: #E5E9F0;
+  --text-light-color: #F8FAFC;
   --comment-color: #607B96;
-  --info-color: #4D5BCE;
-  --success-color: #43D9AD;
-  --warning-color: #E99287;
+  --comment-light-color: #90A1B9;
+  --info-color: #615FFF;
+  --success-color: #00D5BE;
+  --warning-color: #FFA1AD;
   font-size: 62.5%;
 }
 
