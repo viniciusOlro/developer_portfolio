@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <Header />
-    <div v-if="!isMobileMenuOpen">
+    <div v-if="!isMobileMenuOpen" id="main-content">
       <transition name="fade" mode="out-in">
         <nuxt-page />
       </transition>
@@ -86,6 +86,10 @@ a {
   background-color: var(--primary-color);
   position: relative;
 
+  #main-content {
+    height: calc(100vh - 14.42vh - .2rem - 11.2rem);
+  }
+
   #app-footer {
     position: absolute;
     width: 100%;
@@ -113,6 +117,10 @@ a {
   #container {
     height: calc(100vh - 3.2rem);
     width: calc(100vw - 3.2rem);
+
+    #main-content {
+      height: calc(100vh - 14.4rem);
+    }
   }
 }
 </style>
