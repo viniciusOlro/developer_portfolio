@@ -18,7 +18,7 @@
       </div>
     </section>
     <section>
-      <CodeMirror />
+      <CodeMirror id="code-mirror" />
     </section>
   </main>
 </template>
@@ -98,6 +98,31 @@ main {
             cursor: pointer;
           }
         }
+      }
+    }
+  }
+
+  section:last-child {
+    /* overflow: hidden; */
+    #code-mirror {
+      position: relative;
+      z-index: 1000;
+      &::after {
+        content: "";
+        position: absolute;
+        top: -17.8rem;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("/public/background_blurs.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: top;
+        height: 77.96rem;
+        width: 74.22rem;
+        z-index: -1;
+        transform: scale(2);
+        pointer-events: none;
       }
     }
   }
