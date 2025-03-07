@@ -1,44 +1,50 @@
 <template>
   <div class="responsive-box">
-    <codemirror v-model="code" class="cool-glow-editor" placeholder="Code goes here..." :style="{ height: '100%', width: '100%' }"
-      :autofocus="true" :indent-with-tab="true" :tab-size="2" :extensions="extensions" @ready="handleReady"
-      @change="log('change', $event)" @focus="log('focus', $event)" @blur="log('blur', $event)" />
+    <codemirror v-model="code" class="cool-glow-editor" placeholder="Code goes here..."
+      :style="{ height: '100%', width: '100%' }" :autofocus="true" :indent-with-tab="true" :tab-size="2"
+      :extensions="extensions" @ready="handleReady" @change="log('change', $event)" @focus="log('focus', $event)"
+      @blur="log('blur', $event)" />
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, ref, shallowRef } from 'vue'
 import { Codemirror } from 'vue-codemirror'
 import { javascript } from '@codemirror/lang-javascript'
 import { oneDark } from '@codemirror/theme-one-dark'
 import { EditorView } from '@codemirror/view'
+import { EditorState } from '@codemirror/state' // Importação necessária
+import { usePeopleStore } from '#imports'
 
 export default defineComponent({
   components: {
     Codemirror
   },
   setup() {
-    const code = ref(`console.log('Hello, world!')`)
-    const extensions = [javascript(), oneDark, EditorView.theme({
-      '.cm-gutters': { display: 'none' }
-    })]
+    const { people } = usePeopleStore().$state
+    console.log(people)
 
-    // Codemirror EditorView instance ref
+    const code = ref(`const Developer = {
+  name: "${people.name}",
+  age: ${people.age},
+  position: "${people.position}",
+  from: "${people.from}",
+  favoriteAnimal: "${people.favoriteAnimal}",
+  soccerTeam: "${people.soccerTeam}"
+}`)
+
+    const extensions = [
+      javascript(),
+      oneDark,
+      EditorView.theme({
+        '.cm-gutters': { display: 'none' }
+      }),
+      EditorState.readOnly.of(true) // Torna o editor somente leitura
+    ]
+
     const view = shallowRef()
     const handleReady = (payload) => {
       view.value = payload.view
-    }
-
-    // Status is available at all times via Codemirror EditorView
-    const getCodemirrorStates = () => {
-      const state = view.value.state
-      const ranges = state.selection.ranges
-      const selected = ranges.reduce((r, range) => r + range.to - range.from, 0)
-      const cursor = ranges[0].anchor
-      const length = state.doc.length
-      const lines = state.doc.lines
-      // more state info ...
-      // return ...
     }
 
     return {
@@ -51,12 +57,13 @@ export default defineComponent({
 })
 </script>
 
+
 <style scoped>
 .responsive-box {
   width: 100%;
   min-width: 560px;
   max-width: 100%;
-  height: 18rem;
+  height: 20rem;
   box-sizing: border-box;
   border-radius: 8px;
 }
