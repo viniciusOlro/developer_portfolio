@@ -158,6 +158,7 @@ export default {
   main {
     border-right: .1rem solid var(--secondary-color);
     padding: 1.2rem 4rem;
+    overflow-y: auto;
   }
   
   main, section {
@@ -175,6 +176,10 @@ export default {
     aside {
       width: 100%;
       max-width: 100%;
+    }
+    main {
+      padding: 0;
+      width: 100%;
     }
   }
 }

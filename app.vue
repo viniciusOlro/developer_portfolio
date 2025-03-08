@@ -46,6 +46,25 @@ export default {
 body {
   margin: 0;
   padding: 0;
+
+  &::-webkit-scrollbar {
+    width: 0.8rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--primary-color);
+    border-radius: .4rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--comment-color);
+    border-radius: .4rem;
+    border: .2rem solid var(--primary-color);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--comment-light-color); 
+  }
 }
 
 html,

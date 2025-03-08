@@ -86,7 +86,7 @@ export default {
       position: relative;
       padding-left: 2ch;
       display: block;
-      overflow: auto;
+      overflow: hidden;
 
       &::before,
       &::after {
