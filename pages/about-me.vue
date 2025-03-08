@@ -18,7 +18,9 @@
       </div>
     </aside>
     <main>
-      <component :is="getMenuComponent" />
+      <transition name="fade" mode="out-in">
+        <component :is="getMenuComponent" />
+      </transition>
     </main>
     <section>
       snippets
