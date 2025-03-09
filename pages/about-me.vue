@@ -23,7 +23,7 @@
       </transition>
     </main>
     <section>
-      snippets
+      <Gallery />
     </section>
   </div>
 </template>
@@ -33,6 +33,7 @@ import { RiArrowDownSFill, RiArrowRightSLine, RiFolder3Fill } from 'vue-remix-ic
 import Bio from '~/components/about/Bio.vue'
 import Education from '~/components/about/Education.vue'
 import Interests from '~/components/about/Interests.vue'
+import Gallery from '~/components/Gallery.vue'
 
 export default {
   name: "AboutMe",
@@ -42,7 +43,8 @@ export default {
     RiFolder3Fill,
     Bio,
     Education,
-    Interests
+    Interests,
+    Gallery
   },
   data() {
     return {
