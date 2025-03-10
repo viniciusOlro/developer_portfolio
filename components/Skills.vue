@@ -1,12 +1,12 @@
 <template>
   <div>
-    Gallery
+    Skills
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Gallery'
+  name: 'Skills'
 }
 </script>
 
