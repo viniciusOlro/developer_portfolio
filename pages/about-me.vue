@@ -160,14 +160,17 @@ export default {
   main {
     border-right: .1rem solid var(--secondary-color);
     padding: 1.2rem 4rem;
-    overflow-y: auto;
   }
   
   main, section {
     flex-grow: 1;
     width: 71.6rem;
+    overflow-y: auto;
   }
 
+  section {
+    background-color: #020618;
+  }
 
   @media (max-width: 915px) {
     flex-direction: column;
@@ -179,7 +182,9 @@ export default {
       width: 100%;
       max-width: 100%;
     }
-    main {
+    main, section {
+      flex-grow: 1;
+      height: 100%;
       padding: 0;
       width: 100%;
     }
