@@ -144,7 +144,7 @@ export default {
     font-size: 1.8rem;
     line-height: 2.7rem;
     font-weight: 450;
-    color: var(--text-light-color);
+    color: var(--comment-light-color);
   }
 
   section {
