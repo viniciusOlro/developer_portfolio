@@ -1,6 +1,22 @@
 <template>
   <div id="about-container">
-    <aside>
+    <AsideMenu title="personal-info">
+      <template v-slot:content>
+        <div id="about-container-content">
+          <ul>
+            <li v-for="item in asideMenu" :key="item.id" :class="{ 'selected': item.id === selectedMenuId }"
+              @click="onSelectMenuOption(item.id)">
+              <div class="menu-item-chevron">
+                <RiArrowRightSLine />
+              </div>
+              <component :is="item.icon" class="menu-item-icon" :style="`color: ${item.iconColor}`" />
+              <span>{{ item.label }}</span>
+            </li>
+          </ul>
+        </div>
+      </template>
+    </AsideMenu>
+    <!-- <aside>
       <header>
         <RiArrowDownSFill />
         <h2>personal-info</h2>
@@ -16,7 +32,7 @@
           </li>
         </ul>
       </div>
-    </aside>
+    </aside> -->
     <main>
       <transition name="fade" mode="out-in">
         <component :is="getMenuComponent" />
@@ -30,6 +46,7 @@
 
 <script>
 import { RiArrowDownSFill, RiArrowRightSLine, RiFolder3Fill } from 'vue-remix-icons'
+import AsideMenu from '~/components/AsideMenu.vue'
 import Bio from '~/components/about/Bio.vue'
 import Education from '~/components/about/Education.vue'
 import Interests from '~/components/about/Interests.vue'
@@ -41,6 +58,7 @@ export default {
     RiArrowDownSFill,
     RiArrowRightSLine,
     RiFolder3Fill,
+    AsideMenu,
     Bio,
     Education,
     Interests,
@@ -94,66 +112,47 @@ export default {
   display: flex;
   height: 100%;
 
-  aside {
-    width: 17.45%;
-    max-width: 30rem;
-    border-right: .1rem solid var(--secondary-color);
-    header {
+  #about-container-content {
+    padding: 1.2rem 2.4rem;
+
+    ul {
       display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      padding: 1.2rem 2.4rem;
-      color: var(--text-light-color);
-      border-bottom: .1rem solid var(--secondary-color);
+      flex-direction: column;
+      gap: .8rem;
 
-      svg {
-        width: 1.6rem;
-        height: 1.6rem;
-        cursor: pointer;
-      }
-
-      h2 {
-        font-weight: 450;
-        font-size: 1.6rem;
-        line-height: 2.4rem;
-      }
-    }
-    #about-container-content {
-      padding: 1.2rem 2.4rem;
-      ul {
+      li {
         display: flex;
-        flex-direction: column;
-        gap: .8rem;
-        li {
-          display: flex;
-          align-items: center;
-          cursor: pointer;
+        align-items: center;
+        cursor: pointer;
 
-          &.selected {
-            .menu-item-chevron, span {
-              color: var(--text-light-color);
-            }
-          }
+        &.selected {
 
-          .menu-item-chevron {
-            display: flex; 
-            align-items: center;
-            color: #62748E;
-          }
-          .menu-item-icon {
-            margin-left: 1.2rem;
-            margin-right: .8rem;
-          }
+          .menu-item-chevron,
           span {
-            color: var(--comment-light-color);
+            color: var(--text-light-color);
           }
         }
-      }
 
-      svg {
-        width: 1.6rem;
-        height: 1.6rem;
+        .menu-item-chevron {
+          display: flex;
+          align-items: center;
+          color: #62748E;
+        }
+
+        .menu-item-icon {
+          margin-left: 1.2rem;
+          margin-right: .8rem;
+        }
+
+        span {
+          color: var(--comment-light-color);
+        }
       }
+    }
+
+    svg {
+      width: 1.6rem;
+      height: 1.6rem;
     }
   }
 
@@ -161,8 +160,9 @@ export default {
     border-right: .1rem solid var(--secondary-color);
     padding: 1.2rem 4rem;
   }
-  
-  main, section {
+
+  main,
+  section {
     flex-grow: 1;
     width: 71.6rem;
     overflow-y: auto;
@@ -174,15 +174,20 @@ export default {
 
   @media (max-width: 915px) {
     flex-direction: column;
-    aside, main {
+
+    aside,
+    main {
       border-right: none;
       border-bottom: .1rem solid var(--secondary-color);
     }
+
     aside {
       width: 100%;
       max-width: 100%;
     }
-    main, section {
+
+    main,
+    section {
       flex-grow: 1;
       height: 100%;
       padding: 0;
