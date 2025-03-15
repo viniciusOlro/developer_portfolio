@@ -20,46 +20,58 @@
 <script>
 import AsideMenu from '~/components/AsideMenu.vue';
 import { useSkillsStore } from '#imports';
+import { RiJavascriptFill, RiCodeLine, RiPhpFill, RiJavaFill, RiVuejsFill, RiCss3Fill, RiReactjsFill, RiDatabase2Fill } from "vue-remix-icons";
 
 export default {
   name: "Projects",
   components: {
-    AsideMenu
-  },
-  computed: {
-    skills() {
-      return useSkillsStore().$state
-    },
-    selectedSkills() {
-      return this.skillsFilter.filter(skill => skill.isSelected)
-    }
-  },
-  watch: {
-    selectedSkills: {
-      handler() {
-        // Buscar projetos
-      },
-      deep: true,
-      immediate: true
-    }
+    AsideMenu,
+    RiJavascriptFill,
+    RiCodeLine,
+    RiPhpFill,
+    RiJavaFill,
+    RiVuejsFill,
+    RiCss3Fill,
+    RiReactjsFill,
+    RiDatabase2Fill
   },
   data() {
     return {
-      skillsFilter: []
-    }
+      skillsStore: useSkillsStore(),
+      skillsFilter: [],
+      iconMap: {
+        RiJavascriptFill,
+        RiCodeLine,
+        RiPhpFill,
+        RiJavaFill,
+        RiVuejsFill,
+        RiCss3Fill,
+        RiReactjsFill,
+        RiDatabase2Fill
+      }
+    };
   },
   mounted() {
-    this.skills.languages.forEach(language => {
-      this.skillsFilter.push({ ...language, isSelected: false })
-    })
-    this.skills.frontend.forEach(front => {
-      this.skillsFilter.push({ ...front, isSelected: false })
-    })
-    this.skills.backend.forEach(back => {
-      this.skillsFilter.push({ ...back, isSelected: false })
-    })
+    this.skillsFilter = [
+      ...this.skillsStore.languages.map(skill => ({
+        ...skill,
+        isSelected: false,
+        iconComponent: this.iconMap[skill.icon] || null // Mapeia string para componente real
+      })),
+      ...this.skillsStore.frontend.map(skill => ({
+        ...skill,
+        isSelected: false,
+        iconComponent: this.iconMap[skill.icon] || null
+      })),
+      ...this.skillsStore.backend.map(skill => ({
+        ...skill,
+        isSelected: false,
+        iconComponent: this.iconMap[skill.icon] || null
+      }))
+    ];
   }
-}
+};
+
 </script>
 
 <style lang="scss" scoped>
@@ -73,6 +85,7 @@ export default {
     display: flex;
     flex-direction: column;
     gap: .8rem;
+
     li {
       display: flex;
       align-items: center;
