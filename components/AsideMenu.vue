@@ -27,8 +27,11 @@ export default {
 <style lang="scss" scoped>
 aside {
   width: 17.45%;
+  min-width: 20rem;
   max-width: 30rem;
   border-right: .1rem solid var(--secondary-color);
+  overflow-y: auto;
+  overflow-x: hidden;
 
   header {
     display: flex;

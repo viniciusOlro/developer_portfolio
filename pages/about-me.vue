@@ -136,7 +136,7 @@ export default {
         .menu-item-chevron {
           display: flex;
           align-items: center;
-          color: #62748E;
+          color: var(--icon-color);
         }
 
         .menu-item-icon {

@@ -24,7 +24,7 @@ export default defineComponent({
     const { people } = usePeopleStore().$state
     console.log(people)
 
-    const code = ref(`const Developer = {
+    const code = shallowRef(`const Developer = {
   name: "${people.name}",
   age: ${people.age},
   position: "${people.position}",

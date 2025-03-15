@@ -35,6 +35,7 @@ export default {
   --text-light-color: #F8FAFC;
   --comment-color: #607B96;
   --comment-light-color: #90A1B9;
+  --icon-color: #62748E;
   --info-color: #615FFF;
   --success-color: #00D5BE;
   --warning-color: #FFA1AD;
@@ -63,7 +64,7 @@ body {
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: var(--comment-light-color); 
+    background: var(--comment-light-color);
   }
 }
 
@@ -101,6 +102,42 @@ a {
   display: block;
   cursor: pointer;
 }
+
+input[type="checkbox"] {
+  appearance: none;
+  min-width: 2rem;
+  min-width: 2rem;
+  height: 2rem;
+  height: 2rem;
+  border: 2px solid var(--icon-color);
+  border-radius: .3rem;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+
+  &::after {
+    content: "";
+    display: none;
+    width: 12px;
+    height: 24px;
+    border: solid var(--text-light-color);
+    border-width: 0 .3rem .3rem 0;
+    transform: rotate(45deg) scale(.3);
+  }
+
+  &:checked {
+    background-color: var(--icon-color);
+    border-color: var(--icon-color);
+
+    &::after {
+      display: block;
+    }
+  }
+}
+
 
 #container {
   border: .1rem solid var(--secondary-color);
