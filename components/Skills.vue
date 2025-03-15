@@ -6,7 +6,7 @@
       <h4>[Languages]</h4>
       <br>
       <ul>
-        <li v-for="(language, languageIndex) in languages" :key="languageIndex">
+        <li v-for="(language, languageIndex) in skills.languages" :key="languageIndex">
           <span>- {{ language.name }} ({{ language.expYears }} years) - [{{ language.status }}]</span>
         </li>
       </ul>
@@ -16,7 +16,7 @@
       <h4>[Frontend]</h4>
       <br>
       <ul>
-        <li v-for="(front, frontIndex) in frontend" :key="frontIndex">
+        <li v-for="(front, frontIndex) in skills.frontend" :key="frontIndex">
           <span>- {{ front.name }} ({{ front.expYears }} years) - [{{ front.status }}]</span>
         </li>
       </ul>
@@ -26,7 +26,7 @@
       <h4>[Backend]</h4>
       <br>
       <ul>
-        <li v-for="(back, backIndex) in backend" :key="backIndex">
+        <li v-for="(back, backIndex) in skills.backend" :key="backIndex">
           <span>- {{ back.name }} ({{ back.expYears }} years) - [{{ back.status }}]</span>
         </li>
       </ul>
@@ -35,100 +35,13 @@
 </template>
 
 <script>
+import { useSkillsStore } from '#imports'
+
 export default {
   name: 'Skills',
   computed: {
-    languages() {
-      return [
-        {
-          name: 'JavaScript',
-          expYears: 5,
-          group: 'languages' ,
-          status: 'advancedKnowledge'
-        },
-        {
-          name: 'Python',
-          expYears: 2,
-          group: 'languages',
-          status: 'intermediateKnowledge' 
-        },
-        {
-          name: 'PHP',
-          expYears: 1,
-          group: 'languages',
-          status: 'basicContact' 
-        },
-        {
-          name: 'Java',
-          expYears: 1,
-          group: 'languages',
-          status: 'basicContact' 
-        },
-        {
-          name: 'Kotlin',
-          expYears: 1,
-          group: 'languages',
-          status: 'basicContact'
-        }
-      ]
-    },
-    frontend() {
-      return [
-        {
-          name: 'Vue.js',
-          expYears: 5,
-          status: 'advancedKnowledge'
-        },
-        {
-          name: 'Vuetify',
-          expYears: 5,
-          status: 'advancedKnowledge'
-        },
-        {
-          name: 'Nuxt.js',
-          expYears: 5,
-          status: 'advancedKnowledge'
-        },
-        {
-          name: 'SCSS',
-          expYears: 2,
-          status: 'intermediateKnowledge'
-        },
-        {
-          name: 'React',
-          expYears: 2,
-          status: 'currentlyLearning'
-        },
-      ]
-    },
-    backend() {
-      return [
-        {
-          name: 'Node.js',
-          expYears: 5,
-          status: 'intermediateKnowledge'
-        },
-        {
-          name: 'Express.js',
-          expYears: 5,
-          status: 'advancedKnowledge'
-        },
-        {
-          name: 'Java Spring Boot',
-          expYears: 1,
-          status: 'basicContact'
-        },
-        {
-          name: 'PostgreSQL',
-          expYears: 3,
-          status: 'intermediateKnowledge'
-        },
-        {
-          name: 'MongoDB',
-          expYears: 1,
-          status: 'basicContact'
-        },
-      ]
+    skills() {
+      return useSkillsStore().$state;
     }
   }
 }
