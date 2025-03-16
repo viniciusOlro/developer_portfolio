@@ -16,23 +16,6 @@
         </div>
       </template>
     </AsideMenu>
-    <!-- <aside>
-      <header>
-        <RiArrowDownSFill />
-        <h2>personal-info</h2>
-      </header>
-      <div id="about-container-content">
-        <ul>
-          <li v-for="item in asideMenu" :key="item.id" :class="{ 'selected': item.id === selectedMenuId }" @click="onSelectMenuOption(item.id)">
-            <div class="menu-item-chevron">
-              <RiArrowRightSLine />
-            </div>
-            <component :is="item.icon" class="menu-item-icon" :style="`color: ${item.iconColor}`" />
-            <span>{{ item.label }}</span>
-          </li>
-        </ul>
-      </div>
-    </aside> -->
     <main>
       <transition name="fade" mode="out-in">
         <component :is="getMenuComponent" />
@@ -175,16 +158,11 @@ export default {
   @media (max-width: 915px) {
     flex-direction: column;
 
-    aside,
     main {
       border-right: none;
       border-bottom: .1rem solid var(--secondary-color);
     }
 
-    aside {
-      width: 100%;
-      max-width: 100%;
-    }
 
     main,
     section {

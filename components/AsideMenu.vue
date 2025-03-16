@@ -43,6 +43,7 @@ aside {
   transition: ease-in-out .7s all;
   
   &.is-expanded {
+    min-width: 17.45%;
     width: 17.45%;
 
     header {

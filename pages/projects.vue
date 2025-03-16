@@ -2,7 +2,7 @@
   <div id="projects-container">
     <AsideMenu title="projects">
       <template v-slot:content>
-        <ul>
+        <ul id="projects-aside">
           <li v-for="(skill, skillIndex) in skillsFilter" :key="skillIndex">
             <input type="checkbox" v-model="skill.isSelected" />
             <component :is="skill.icon" />
@@ -12,7 +12,21 @@
       </template>
     </AsideMenu>
     <section>
-      projects
+      <ul id="projects-list">
+        <li v-for="(project, projectIndex) in projects" :key="project.id">
+          <h3>
+            <span>Project {{ projectIndex + 1 }}</span>
+            <span> // {{ project.name }}</span>
+          </h3>
+          <div>
+            <img :src="project.homepage" />
+            <p>
+              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sit ullam corporis.</span>
+              <button>view-project</button>
+            </p>
+          </div>
+        </li>
+      </ul>
     </section>
   </div>
 </template>
@@ -21,6 +35,7 @@
 import AsideMenu from '~/components/AsideMenu.vue';
 import { useSkillsStore } from '#imports';
 import { RiJavascriptFill, RiCodeLine, RiPhpFill, RiJavaFill, RiVuejsFill, RiCss3Fill, RiReactjsFill, RiDatabase2Fill } from "vue-remix-icons";
+import { getReposLength, getAllProjects } from '~/services/project';
 
 export default {
   name: "Projects",
@@ -48,27 +63,43 @@ export default {
         RiCss3Fill,
         RiReactjsFill,
         RiDatabase2Fill
-      }
+      },
+      projectsPagination: {
+        page: 1,
+        perPage: 5,
+        totalCount: 0
+      },
+      projects: []
     };
   },
+  methods: {
+    initSkillsFilter() {
+      this.skillsFilter = [
+        ...this.skillsStore.languages.map(skill => ({
+          ...skill,
+          isSelected: false,
+          iconComponent: this.iconMap[skill.icon] || null // Mapeia string para componente real
+        })),
+        ...this.skillsStore.frontend.map(skill => ({
+          ...skill,
+          isSelected: false,
+          iconComponent: this.iconMap[skill.icon] || null
+        })),
+        ...this.skillsStore.backend.map(skill => ({
+          ...skill,
+          isSelected: false,
+          iconComponent: this.iconMap[skill.icon] || null
+        }))
+      ]
+    },
+    async initProjects() {
+      this.projectsPagination.totalCount = await getReposLength()
+      this.projects = await getAllProjects(this.projectsPagination.page, this.projectsPagination.perPage)
+    }
+  },
   mounted() {
-    this.skillsFilter = [
-      ...this.skillsStore.languages.map(skill => ({
-        ...skill,
-        isSelected: false,
-        iconComponent: this.iconMap[skill.icon] || null // Mapeia string para componente real
-      })),
-      ...this.skillsStore.frontend.map(skill => ({
-        ...skill,
-        isSelected: false,
-        iconComponent: this.iconMap[skill.icon] || null
-      })),
-      ...this.skillsStore.backend.map(skill => ({
-        ...skill,
-        isSelected: false,
-        iconComponent: this.iconMap[skill.icon] || null
-      }))
-    ];
+    this.initSkillsFilter()
+    this.initProjects()
   }
 };
 
@@ -80,7 +111,84 @@ export default {
   width: 100%;
   height: 100%;
 
-  ul {
+  section {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 3.2rem;
+    width: 100%;
+
+    #projects-list {
+      width: 100%;
+      display: flex;
+      align-items: end;
+      gap: 4rem;
+
+      li {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+        width: 40rem;
+
+        h3 {
+          span {
+            font-size: 1.6rem;
+            line-height: 2.4rem;
+            font-weight: 700;
+
+            &:first-child {
+              color: var(--info-color);
+            }
+
+            &:last-child {
+              color: var(--comment-light-color);
+            }
+          }
+        }
+
+        div {
+          border: 1px solid #1D293D;
+          border-radius: 1.6rem;
+          height: 32rem;
+          display: flex;
+          flex-direction: column;
+
+          img {
+            width: 100%;
+            height: 50%;
+            object-fit: cover;
+            border-radius: 1.6rem 1.6rem 0 0;
+          }
+
+          p {
+            background-color: #020618;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            padding: 3.2rem;
+            border-radius: 0 0 1.6rem 1.6rem;
+
+            button {
+              all: unset;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              background-color: #45556C;
+              color: var(--text-light-color);
+              height: 4rem;
+              width: 12.5rem;
+              border-radius: .8rem;
+              font-size: 1.4rem;
+              line-height: 1.96rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #projects-aside {
     padding: 1.2rem 2.4rem;
     display: flex;
     flex-direction: column;
@@ -103,6 +211,24 @@ export default {
         font-size: 1.6rem;
         line-height: 2.4rem;
         font-weight: 450;
+      }
+    }
+  }
+}
+
+@media(max-width: 915px) {
+  #projects-container {
+    section {
+      padding: 1.6rem 0;
+      #projects-list {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 1.6rem;
+
+        li {
+          width: 100%;
+        }
       }
     }
   }
