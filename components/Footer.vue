@@ -4,32 +4,20 @@
       <span>
         find me in:
       </span>
-      <div class="icon" @click="onLinkedinClick">
-        <RiLinkedinFill />
-      </div>
     </div>
     <div @click="onGithubClick">
       <span>
         @vinicius_olro
       </span>
-      <RiGithubFill />
+      <i class="ri-github-fill"></i>
     </div>
   </footer>
 </template>
 
 <script>
-import { RiLinkedinFill, RiGithubFill } from 'vue-remix-icons';
 export default {
   name: 'Footer',
-  components: {
-    RiLinkedinFill,
-    RiGithubFill
-  },
   methods: {
-    onLinkedinClick() {
-      console.log('Enviar para Likedin em nova aba.');
-      // window.open('', '_blank');
-    },
     onGithubClick() {
       window.open('https://github.com/viniciusOlro', '_blank');
     }

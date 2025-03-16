@@ -1,7 +1,7 @@
 <template>
   <aside :class="{ 'is-expanded': isExpanded }">
     <header>
-      <RiArrowDownSFill :class="['arrow', { 'is-expanded': isExpanded }]" @click="isExpanded = !isExpanded"/>
+      <i class="ri-arrow-down-s-line" :class="['arrow', { 'is-expanded': isExpanded }]" @click="isExpanded = !isExpanded" />
       <transition name="fade" mode="out-in">
         <h2 v-if="isExpanded">{{ title }}</h2>
       </transition>
@@ -13,12 +13,8 @@
 </template>
 
 <script>
-import { RiArrowDownSFill } from 'vue-remix-icons'
 export default {
   name: 'AsideMenu',
-  components: {
-    RiArrowDownSFill
-  },
   props: {
     title: {
       type: String,
@@ -68,19 +64,13 @@ aside {
     border-bottom: .1rem solid var(--secondary-color);
 
     .arrow {
+      font-size: 2rem;
+      cursor: pointer;
       transform: rotate(-90deg);
       transition: transform .5s ease-in-out;
       &.is-expanded {
         transform: rotate(0deg);
       }
-    }
-
-    svg {
-      width: 2rem;
-      min-width: 2rem;
-      height: 2rem;
-      min-height: 2rem;
-      cursor: pointer;
     }
 
     h2 {

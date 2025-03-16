@@ -3,28 +3,25 @@ import { defineStore } from 'pinia'
 export const useSkillsStore = defineStore('skillsStore', {
   state: () => ({
     languages: [
-      { name: 'JavaScript', expYears: 5, group: 'languages', status: 'advancedKnowledge', icon: 'RiJavascriptFill' },
-      { name: 'Python', expYears: 2, group: 'languages', status: 'intermediateKnowledge', icon: 'RiCodeLine' },
-      { name: 'PHP', expYears: 1, group: 'languages', status: 'basicContact', icon: 'RiPhpFill' },
-      { name: 'Java', expYears: 1, group: 'languages', status: 'basicContact', icon: 'RiJavaFill' },
-      { name: 'Kotlin', expYears: 1, group: 'languages', status: 'basicContact', icon: 'RiCodeLine' }
+      { name: 'JavaScript', expYears: 5, group: 'languages', status: 'advancedKnowledge', icon: 'ri-javascript-fill' },
+      { name: 'Python', expYears: 2, group: 'languages', status: 'intermediateKnowledge', icon: 'ri-code-line' },
+      { name: 'PHP', expYears: 1, group: 'languages', status: 'basicContact', icon: 'ri-php-fill' },
+      { name: 'Java', expYears: 1, group: 'languages', status: 'basicContact', icon: 'ri-java-fill' },
+      { name: 'Kotlin', expYears: 1, group: 'languages', status: 'basicContact', icon: 'ri-code-line' }
     ],
     frontend: [
-      { name: 'Vue.js', expYears: 5, status: 'advancedKnowledge', icon: 'RiVuejsFill' },
-      { name: 'Vuetify', expYears: 5, status: 'advancedKnowledge', icon: 'RiVuejsFill' },
-      { name: 'Nuxt.js', expYears: 5, status: 'advancedKnowledge', icon: 'RiVuejsFill' },
-      { name: 'SCSS', expYears: 2, status: 'intermediateKnowledge', icon: 'RiCss3Fill' },
-      { name: 'React', expYears: 2, status: 'currentlyLearning', icon: 'RiReactjsFill' }
+      { name: 'Vue.js', expYears: 5, status: 'advancedKnowledge', icon: 'ri-vuejs-fill' },
+      { name: 'Vuetify', expYears: 5, status: 'advancedKnowledge', icon: 'ri-vuejs-fill' },
+      { name: 'Nuxt.js', expYears: 5, status: 'advancedKnowledge', icon: 'ri-vuejs-fill' },
+      { name: 'SCSS', expYears: 2, status: 'intermediateKnowledge', icon: 'ri-css3-fill' },
+      { name: 'React', expYears: 2, status: 'currentlyLearning', icon: 'ri-reactjs-fill' }
     ],
     backend: [
-      { name: 'Node.js', expYears: 5, status: 'intermediateKnowledge', icon: 'RiJavascriptFill' },
-      { name: 'Express.js', expYears: 5, status: 'advancedKnowledge', icon: 'RiJavascriptFill' },
-      { name: 'Java Spring Boot', expYears: 1, status: 'basicContact', icon: 'RiJavaFill' },
-      { name: 'PostgreSQL', expYears: 3, status: 'intermediateKnowledge', icon: 'RiDatabase2Fill' },
-      { name: 'MongoDB', expYears: 1, status: 'basicContact', icon: 'RiDatabase2Fill' }
+      { name: 'Node.js', expYears: 5, status: 'intermediateKnowledge', icon: 'ri-javascript-fill' },
+      { name: 'Express.js', expYears: 5, status: 'advancedKnowledge', icon: 'ri-javascript-fill' },
+      { name: 'Java Spring Boot', expYears: 1, status: 'basicContact', icon: 'ri-java-fill' },
+      { name: 'PostgreSQL', expYears: 3, status: 'intermediateKnowledge', icon: 'ri-database-2-fill' },
+      { name: 'MongoDB', expYears: 1, status: 'basicContact', icon: 'ri-database-2-fill' }
     ]
-  }),
-  actions: {
-    //
-  }
+  })
 })

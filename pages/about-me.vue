@@ -7,9 +7,9 @@
             <li v-for="item in asideMenu" :key="item.id" :class="{ 'selected': item.id === selectedMenuId }"
               @click="onSelectMenuOption(item.id)">
               <div class="menu-item-chevron">
-                <RiArrowRightSLine />
+                <i class="ri-arrow-right-s-line"></i>
               </div>
-              <component :is="item.icon" class="menu-item-icon" :style="`color: ${item.iconColor}`" />
+              <i :class="['menu-item-icon', item.icon]" :style="`color: ${item.iconColor}`" />
               <span>{{ item.label }}</span>
             </li>
           </ul>
@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import { RiArrowDownSFill, RiArrowRightSLine, RiFolder3Fill } from 'vue-remix-icons'
 import AsideMenu from '~/components/AsideMenu.vue'
 import Bio from '~/components/about/Bio.vue'
 import Education from '~/components/about/Education.vue'
@@ -38,9 +37,6 @@ import Skills from '~/components/Skills.vue'
 export default {
   name: "AboutMe",
   components: {
-    RiArrowDownSFill,
-    RiArrowRightSLine,
-    RiFolder3Fill,
     AsideMenu,
     Bio,
     Education,
@@ -58,21 +54,21 @@ export default {
         {
           id: 0,
           label: 'bio',
-          icon: RiFolder3Fill,
+          icon: 'ri-folder-3-fill',
           iconColor: '#FF637E',
           component: Bio
         },
         {
           id: 1,
           label: 'interests',
-          icon: RiFolder3Fill,
+          icon: 'ri-folder-3-fill',
           iconColor: '#00D5BE',
           component: Interests
         },
         {
           id: 2,
           label: 'education',
-          icon: RiFolder3Fill,
+          icon: 'ri-folder-3-fill',
           iconColor: '#615FFF',
           component: Education
         },
