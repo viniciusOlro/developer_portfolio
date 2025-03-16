@@ -1,6 +1,6 @@
 <template>
   <div id="about-container">
-    <AsideMenu title="personal-info">
+    <AsideMenu title="personal-info" id="about-aside-menu">
       <template v-slot:content>
         <div id="about-container-content">
           <ul>
@@ -95,6 +95,10 @@ export default {
   display: flex;
   height: 100%;
 
+  #about-aside-menu {
+    flex-grow: 1;
+  }
+
   #about-container-content {
     padding: 1.2rem 2.4rem;
 
@@ -158,11 +162,16 @@ export default {
   @media (max-width: 915px) {
     flex-direction: column;
 
+    #about-aside-menu {
+      width: 100%;
+      height: 40rem;
+      border-bottom: .1rem solid var(--secondary-color);
+    }
+
     main {
       border-right: none;
       border-bottom: .1rem solid var(--secondary-color);
     }
-
 
     main,
     section {

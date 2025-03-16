@@ -1,6 +1,6 @@
 <template>
   <div id="projects-container">
-    <AsideMenu title="projects">
+    <AsideMenu title="projects" id="projects-aside-menu">
       <template v-slot:content>
         <ul id="projects-aside">
           <li v-for="(skill, skillIndex) in skillsFilter" :key="skillIndex">
@@ -218,6 +218,11 @@ export default {
 
 @media(max-width: 915px) {
   #projects-container {
+    flex-direction: column;
+    #projects-aside-menu {
+      width: 100%;
+      border-bottom: .1rem solid var(--secondary-color);
+    }
     section {
       padding: 1.6rem 0;
       #projects-list {

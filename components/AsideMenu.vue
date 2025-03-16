@@ -42,6 +42,12 @@ aside {
   overflow-x: hidden;
   transition: ease-in-out .7s all;
   
+  @media (max-width: 915px) {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+  }
+
   &.is-expanded {
     min-width: 17.45%;
     width: 17.45%;
