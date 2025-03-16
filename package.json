@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.3",
@@ -19,9 +20,11 @@
     "pinia": "^3.0.1",
     "vue": "latest",
     "vue-codemirror": "^6.1.1",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "sass-embedded": "^1.85.0"
   }
 }

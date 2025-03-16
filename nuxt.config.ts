@@ -4,6 +4,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@pinia/nuxt'],
   app: {
+    baseURL: '/developer_portfolio/',
+    buildAssetsDir: 'assets',
     head: {
       link: [
         {
