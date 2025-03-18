@@ -100,16 +100,15 @@ export default {
 
     #projects-list {
       width: 100%;
-      display: flex;
-      align-items: last baseline;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
       gap: 4rem;
 
       li {
         display: flex;
         flex-direction: column;
+        align-self: flex-end;
         gap: 1.6rem;
-        width: 40rem;
 
         h3 {
           span {
@@ -168,6 +167,7 @@ export default {
         }
       }
     }
+
   }
 
   #projects-aside {
@@ -207,6 +207,6 @@ export default {
       max-width: 100%;
       border-bottom: .1rem solid var(--secondary-color);
     }
-  }  
+  }
 }
 </style>
