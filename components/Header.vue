@@ -68,23 +68,26 @@ export default {
 <style lang="scss" scoped>
 header {
   color: var(--comment-color);
-  padding: 0 2.2rem;
   display: flex;
   border-bottom: .1rem solid var(--secondary-color);
+  height: 5.6rem;
 
   .hamburger {
     display: none;
+    padding-right: 2.2rem;
   }
 
   h1 {
     font-size: 1.6rem;
     font-weight: normal;
-    margin: auto;
-    margin-right: 15.4rem;
+    padding-left: 2.2rem;
+    margin: auto 0;
+    display: block;
+    width: calc(30rem - 1px);
   }
 
   nav {
-    width: 100%;
+    flex-grow: 1;
     height: 5.6rem;
 
     ul {

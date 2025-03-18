@@ -92,7 +92,7 @@ export default {
   height: 100%;
 
   #about-aside-menu {
-    flex-grow: 1;
+    max-width: 30rem;
   }
 
   #about-container-content {

@@ -32,21 +32,18 @@ export default {
 <style lang="scss" scoped>
 aside {
   width: 5rem;
-  max-width: 30rem;
+  height: 100%;
   border-right: .1rem solid var(--secondary-color);
   overflow-y: auto;
   overflow-x: hidden;
-  transition: ease-in-out .7s all;
-  
+  transition: ease-in-out 1.5s all;
+
   @media (max-width: 915px) {
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
+    max-width: none;
   }
 
   &.is-expanded {
-    min-width: 17.45%;
-    width: 17.45%;
+    width: 100%;
 
     header {
       justify-content: flex-start;

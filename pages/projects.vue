@@ -88,6 +88,10 @@ export default {
   width: 100%;
   height: 100%;
 
+  #projects-aside-menu {
+    max-width: 30rem;
+  }
+
   section {
     overflow-y: auto;
     overflow-x: hidden;
@@ -97,7 +101,8 @@ export default {
     #projects-list {
       width: 100%;
       display: flex;
-      align-items: end;
+      align-items: last baseline;
+      flex-wrap: wrap;
       gap: 4rem;
 
       li {
@@ -191,5 +196,17 @@ export default {
       }
     }
   }
+}
+
+@media (max-width: 915px) {
+  #projects-container {
+    flex-direction: column;
+
+    #projects-aside-menu {
+      height: 21.5rem;
+      max-width: 100%;
+      border-bottom: .1rem solid var(--secondary-color);
+    }
+  }  
 }
 </style>
