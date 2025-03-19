@@ -10,19 +10,26 @@
   </div>
 </template>
 
-<script>
-import Header from './components/Header.vue';
-import Footer from './components/Footer.vue';
-import navbarMixin from './mixins/navbar.mixin';
-export default {
-  name: 'App',
-  mixins: [navbarMixin],
-  components: {
-    Header,
-    Footer
-  }
-}
+<script setup>
+import { ref } from 'vue'
+import { useHead } from '#app'
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+
+useHead({
+  title: 'viniciusOlro :: Developer Portfolio',
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/svg+xml',
+      href: '/favicon.svg'
+    }
+  ]
+})
+
+const isMobileMenuOpen = ref(false)
 </script>
+
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
