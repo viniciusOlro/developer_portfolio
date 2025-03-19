@@ -54,7 +54,7 @@ export default {
   methods: {
     onPageClick(pagePath) {
       if (this.isMobileMenuOpen) {
-        this.isMobileMenuOpen = false
+        this.handleHamburgerMenu()
       }
       this.$router.push(pagePath)
     },
@@ -74,7 +74,6 @@ header {
 
   .hamburger {
     display: none;
-    padding-right: 2.2rem;
   }
 
   h1 {
@@ -138,6 +137,7 @@ header {
     .hamburger {
       width: 1.8rem;
       height: 1.6rem;
+      margin-right: 2.2rem;
       position: relative;
       cursor: pointer;
       display: flex;

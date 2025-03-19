@@ -160,6 +160,7 @@ export default {
 
     #about-aside-menu {
       width: 100%;
+      max-width: 100%;
       height: 40rem;
       border-bottom: .1rem solid var(--secondary-color);
     }
