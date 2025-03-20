@@ -205,7 +205,10 @@ export default {
     #projects-aside-menu {
       height: 21.5rem;
       max-width: 100%;
-      border-bottom: .1rem solid var(--secondary-color);
+    }
+    
+    section {
+      border-top: .1rem solid var(--secondary-color);
     }
   }
 }

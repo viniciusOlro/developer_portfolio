@@ -159,10 +159,9 @@ export default {
     flex-direction: column;
 
     #about-aside-menu {
-      width: 100%;
       max-width: 100%;
-      height: 40rem;
       border-bottom: .1rem solid var(--secondary-color);
+      position: relative;
     }
 
     main {
@@ -173,7 +172,7 @@ export default {
     main,
     section {
       flex-grow: 1;
-      height: 100%;
+      height: 50%;
       padding: 0;
       width: 100%;
     }
